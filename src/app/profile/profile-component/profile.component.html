@@ -1,0 +1,22 @@
+<div class="profile-container">
+  <h2>My Profile</h2>
+  <form (ngSubmit)="saveProfile()" *ngIf="loggedInUser">
+    <div>
+      <label>Username:</label>
+      <input [(ngModel)]="loggedInUser.userName" name="userName" required />
+    </div>
+    <div>
+      <label>Email:</label>
+      <input [value]="loggedInUser.email" name="email" disabled />
+    </div>
+    <div>
+      <label>Role:</label>
+      <input [(ngModel)]="loggedInUser.role" name="role" required />
+    </div>
+    <button type="submit">Save</button>
+  </form>
+  <div *ngIf="!loggedInUser">
+    <p>No user information found.</p>
+  </div>
+</div>
+

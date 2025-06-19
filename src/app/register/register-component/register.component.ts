@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Title} from "@angular/platform-browser";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {RegisterService} from "../register-service/register.service";
-import {RegisterFilter} from "../register-service/register.filter";
+import {UserFilter} from "../../services/user/user.filter";
+import {UserService} from "../../services/user/user.service";
 
 @Component({
   selector: 'app-register',
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private title: Title,
-    private service: RegisterService
+    private service: UserService
   ) {}
 
   ngOnInit(): void {
@@ -30,13 +30,18 @@ export class RegisterComponent implements OnInit {
   }
 
   registerButtonClicked(): void {
-    let filter = new RegisterFilter();
+    let filter = new UserFilter();
+    let password = this.registrationFormGroup.get('password')?.value;
+    let confirmPassword = this.registrationFormGroup.get('confirmPassword')?.value;
     filter.email = this.registrationFormGroup.get('email')?.value;
     filter.userName = this.registrationFormGroup.get('userName')?.value;
-    filter.password = this.registrationFormGroup.get('password')?.value;
-    filter.confirmPassword = this.registrationFormGroup.get('confirmPassword')?.value;
+    if (password == confirmPassword) {
+      filter.password = this.registrationFormGroup.get('password')?.value;
+    } else {
+      console.error('Passwords do not match');
+      return;
+    }
     filter.role = this.registrationFormGroup.get('role')?.value;
-    // console.log('Registering user with filter:', filter);
     this.service.register(filter).subscribe({
       next: (response) => {
         console.log('Registration successful');

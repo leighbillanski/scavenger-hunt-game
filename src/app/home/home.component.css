@@ -1,0 +1,24 @@
+.side-menu {
+  width: 200px;
+  float: left;
+  background: #f4f4f4;
+  height: 100vh;
+  padding-top: 20px;
+}
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+}
+.side-menu li {
+  padding: 15px 20px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.side-menu li:hover {
+  background: #ddd;
+}
+.main-content {
+  margin-left: 200px;
+  padding: 30px;
+}
+

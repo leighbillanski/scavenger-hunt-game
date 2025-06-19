@@ -1,0 +1,21 @@
+<div>
+  <div class="login-header">
+    <h1 class="text-center">Login</h1>
+  </div>
+  <h1>
+    <button type="button" class="btn back-btn" (click)="backButtonClicked()">
+      <i class="bi bi-arrow-left"></i>
+    </button>
+  </h1>
+  <form (ngSubmit)="loginButtonClicked()" [formGroup]="loginFormGroup" class="login">
+    <div class="mb-3">
+      <input placeholder="Username" type="text" id="userName" formControlName="userName" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <input placeholder="Password" type="password" id="password" formControlName="password" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <button type="submit">Login</button>
+    </div>
+  </form>
+</div>
