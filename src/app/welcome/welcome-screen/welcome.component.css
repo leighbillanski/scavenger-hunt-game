@@ -1,0 +1,57 @@
+.background {
+  background-color: mediumpurple;
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-text {
+  color: white;
+  font-size: 2.5rem;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.login-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  height: 7vh;
+  width: 60vw;
+  font-size: 1.2rem;
+  color: white;
+  background-color: dodgerblue;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.3s ease;
+}
+
+.register-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  height: 7vh;
+  width: 60vw;
+  font-size: 1.2rem;
+  color: white;
+  background-color: cornflowerblue;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.other-test {
+  text-align: center;
+}

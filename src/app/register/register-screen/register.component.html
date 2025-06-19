@@ -1,0 +1,39 @@
+<div>
+  <div class="register-header">
+    <h1 class="text-center">Register</h1>
+  </div>
+<h1>
+  <button type="button" class="btn back-buttn" (click)="backButtonClicked()">
+    <i class="bi bi-arrow-left"></i>
+  </button>
+</h1>
+  <form (ngSubmit)="registerButtonClicked()" [formGroup]="registrationFormGroup" class="register">
+    <div class="mb-3">
+      <input placeholder="Email" type="text" id="email" formControlName="email" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <input placeholder="User Name" type="text" id="userName" formControlName="userName" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <input placeholder="Password" type="text" id="password" formControlName="password" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <input placeholder="Confirm Password" type="text" id="confirmPassword" formControlName="confirmPassword" class="form-control" required>
+    </div>
+    <div class="mb-3">
+     <select
+      id="role"
+      formControlName="role"
+      >
+      <option value="HUNTER">Hunter</option>
+      <option value="HOST">Host</option>
+     </select>
+    </div>
+    <div class="mb-3">
+      <button type="submit">Submit</button>
+    </div>
+
+  </form>
+
+
+</div>
