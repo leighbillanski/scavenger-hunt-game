@@ -45,10 +45,10 @@ export class RegisterComponent implements OnInit {
     this.service.register(filter).subscribe({
       next: (response) => {
         console.log('Registration successful');
-        this.router.navigate(['/welcome']);
+        this.router.navigate(['/user/login']);
       },
       error: (error) => {
-        console.error('Registration failed', error);
+        alert(error.error.message || 'Registration failed');
       }
     });
   }

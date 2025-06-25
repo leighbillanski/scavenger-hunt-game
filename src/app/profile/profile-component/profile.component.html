@@ -1,22 +1,33 @@
-<div class="profile-container">
-  <h2>My Profile</h2>
-  <form (ngSubmit)="saveProfile()" *ngIf="loggedInUser">
-    <div>
-      <label>Username:</label>
-      <input [(ngModel)]="loggedInUser.userName" name="userName" required />
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="card shadow p-4" style="min-width: 350px; max-width: 450px; width: 100%;">
+    <div class="text-center mb-4">
+      <h2 class="mb-3">My Profile</h2>
+      <button type="button" class="btn btn-outline-secondary btn-sm float-start" (click)="backToHome()">
+        <i class="bi bi-arrow-left"></i> Back
+      </button>
     </div>
-    <div>
-      <label>Email:</label>
-      <input [value]="loggedInUser.email" name="email" disabled />
+    <form (ngSubmit)="saveProfile()" *ngIf="loggedInUser">
+      <div class="mb-3">
+        <input placeholder="Username" id="userName" type="text" [(ngModel)]="loggedInUser.userName" name="userName" class="form-control" required />
+      </div>
+      <div class="mb-3">
+        <input placeholder="Email" id="email" type="email" [value]="loggedInUser.email" name="email" class="form-control" disabled />
+      </div>
+      <div class="mb-3">
+        <select id="role" [(ngModel)]="loggedInUser.role" name="role" class="form-select" required>
+          <option value="HUNTER">Hunter</option>
+          <option value="HOST">Host</option>
+        </select>
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-success">
+          <i class="bi bi-save me-1"></i>Save
+        </button>
+      </div>
+    </form>
+    <div *ngIf="!loggedInUser">
+      <p>No user information found.</p>
     </div>
-    <div>
-      <label>Role:</label>
-      <input [(ngModel)]="loggedInUser.role" name="role" required />
-    </div>
-    <button type="submit">Save</button>
-  </form>
-  <div *ngIf="!loggedInUser">
-    <p>No user information found.</p>
   </div>
 </div>
 

@@ -1,39 +1,35 @@
-<div>
-  <div class="register-header">
-    <h1 class="text-center">Register</h1>
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="card shadow p-4" style="min-width: 350px; max-width: 450px; width: 100%;">
+    <div class="text-center mb-4">
+      <h2 class="mb-3">Register</h2>
+      <button type="button" class="btn btn-outline-secondary btn-sm float-start" (click)="backButtonClicked()">
+        <i class="bi bi-arrow-left"></i> Back
+      </button>
+    </div>
+    <form (ngSubmit)="registerButtonClicked()" [formGroup]="registrationFormGroup">
+      <div class="mb-3">
+        <input placeholder="Email" type="text" id="email" formControlName="email" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <input placeholder="User Name" type="text" id="userName" formControlName="userName" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <input placeholder="Password" type="password" id="password" formControlName="password" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <input placeholder="Confirm Password" type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <select id="role" formControlName="role" class="form-select">
+          <option value="HUNTER">Hunter</option>
+          <option value="HOST">Host</option>
+        </select>
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-success">
+          <i class="bi bi-person-plus me-1"></i>Submit
+        </button>
+      </div>
+    </form>
   </div>
-<h1>
-  <button type="button" class="btn back-buttn" (click)="backButtonClicked()">
-    <i class="bi bi-arrow-left"></i>
-  </button>
-</h1>
-  <form (ngSubmit)="registerButtonClicked()" [formGroup]="registrationFormGroup" class="register">
-    <div class="mb-3">
-      <input placeholder="Email" type="text" id="email" formControlName="email" class="form-control" required>
-    </div>
-    <div class="mb-3">
-      <input placeholder="User Name" type="text" id="userName" formControlName="userName" class="form-control" required>
-    </div>
-    <div class="mb-3">
-      <input placeholder="Password" type="text" id="password" formControlName="password" class="form-control" required>
-    </div>
-    <div class="mb-3">
-      <input placeholder="Confirm Password" type="text" id="confirmPassword" formControlName="confirmPassword" class="form-control" required>
-    </div>
-    <div class="mb-3">
-     <select
-      id="role"
-      formControlName="role"
-      >
-      <option value="HUNTER">Hunter</option>
-      <option value="HOST">Host</option>
-     </select>
-    </div>
-    <div class="mb-3">
-      <button type="submit">Submit</button>
-    </div>
-
-  </form>
-
-
 </div>

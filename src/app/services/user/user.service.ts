@@ -30,4 +30,24 @@ export class UserService {
     const user = localStorage.getItem('loggedInUser');
     return user ? JSON.parse(user) : null;
   }
+
+  deleteUser(userId: string) {
+    return this.http.delete(this.url + userId);
+  }
+
+  updateUser(userId: string, user: UserFilter) {
+    return this.http.put(this.url + userId, user);
+  }
+
+  getUserById(userId: string) {
+    return this.http.get(this.url + userId);
+  }
+
+  getAllUsers() {
+    return this.http.get(this.url);
+  }
+
+  logout() {
+    localStorage.removeItem('loggedInUser');
+  }
 }

@@ -1,0 +1,24 @@
+.back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 35px;
+}
+
+.login-header {
+  text-align: left;
+  padding-top: 30px;
+  font-size: 24px;
+  color: #333;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  padding-top: 150px;
+}

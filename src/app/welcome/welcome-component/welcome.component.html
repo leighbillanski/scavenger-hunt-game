@@ -1,12 +1,17 @@
-<div class="background">
-  <div>
-    <div class="welcome-text">Welcome</div>
-    <div class="other-test">Get ready for the hunt!</div>
-    <div class="button">
-      <button (click)="navigateToLogin()" class="login-button">Login</button>
+<div class="welcome-bg welcome-hunt-bg container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="card shadow p-4 text-center" style="min-width: 350px; max-width: 400px; width: 100%;">
+    <div class="mb-4">
+      <i class="bi bi-heart-fill display-3 text-danger"></i>
+      <h1 class="mb-2">Welcome</h1>
+      <div class="lead mb-3">Get ready for the hunt!</div>
     </div>
-    <div class="button">
-      <button (click)="navigateToRegister()" class="register-button">Sign up</button>
+    <div class="d-grid gap-2 mb-2">
+      <button (click)="navigateToLogin()" class="btn btn-primary btn-lg">
+        <i class="bi bi-box-arrow-in-right me-1"></i>Login
+      </button>
+      <button (click)="navigateToRegister()" class="btn btn-outline-success btn-lg">
+        <i class="bi bi-person-plus me-1"></i>Sign up
+      </button>
     </div>
   </div>
 </div>

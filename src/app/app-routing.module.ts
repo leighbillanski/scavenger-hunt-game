@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  },
+  {
+    path: 'hunt',
+    loadChildren: () => import('./hunt/hunt.module').then(m => m.HuntModule)
   }
 ];
 

@@ -1,11 +1,54 @@
-<div class="side-menu">
-  <ul>
-    <li (click)="navigateToProfile()">Profile Info</li>
-    <!-- Add more menu items here -->
-  </ul>
+<div class="container-fluid home-bg">
+  <div class="row">
+    <!-- Collapsible sidebar for all screens -->
+    <nav class="side-menu bg-light sidebar py-4" [class.collapsed]="sidebarCollapsed">
+      <button class="sidebar-toggle btn btn-outline-secondary mb-3 ms-2" (click)="sidebarCollapsed = !sidebarCollapsed">
+        <i class="bi" [ngClass]="sidebarCollapsed ? 'bi-chevron-double-right' : 'bi-chevron-double-left'"></i>
+      </button>
+      <ul class="nav flex-column mt-4" *ngIf="!sidebarCollapsed">
+        <li class="nav-item mb-0">
+          <a class="nav-link" (click)="navigateToHunt()">
+            <i class="bi bi-search me-2"></i>Hunt
+          </a>
+        </li>
+      </ul>
+      <ul class="nav flex-column mt-auto" *ngIf="!sidebarCollapsed">
+        <li class="nav-item mb-0">
+          <a class="nav-link" (click)="navigateToProfile()">
+            <i class="bi bi-person-circle me-2"></i>Profile Info
+          </a>
+        </li>
+        <li class="nav-item mb-0">
+          <a class="nav-link text-danger" (click)="logout()">
+            <i class="bi bi-box-arrow-right me-2"></i>Logout
+          </a>
+        </li>
+        <li class="nav-item mb-0">
+          <a class="nav-link text-danger" (click)="deleteAccount()">
+            <i class="bi bi-trash me-2"></i>Delete Account
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div>
+      <main class="main-content px-md-4 py-4 d-flex align-items-center justify-content-center min-vh-100">
+        <div class="card shadow-sm w-100" style="max-width: 600px;">
+          <div class="card-body text-center">
+            <div class="collage-heading mb-4">Our love story in pictures</div>
+            <div class="slideshow-container">
+              <img [src]="collageImages[currentSlide]" class="slideshow-img" alt="Slideshow photo" (click)="openLightbox(collageImages[currentSlide])" />
+              <button class="slideshow-nav prev" (click)="prevSlide()" aria-label="Previous photo">&#10094;</button>
+              <button class="slideshow-nav next" (click)="nextSlide()" aria-label="Next photo">&#10095;</button>
+            </div>
+            <div class="slideshow-dots">
+              <span *ngFor="let img of collageImages; let i = index" class="dot" [class.active]="i === currentSlide" (click)="goToSlide(i)"></span>
+            </div>
+            <div class="lightbox" *ngIf="lightboxImg" (click)="closeLightbox()">
+              <img [src]="lightboxImg" class="lightbox-img" alt="Large slideshow photo" />
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
 </div>
-<div class="main-content">
-  <h1>Welcome to the Home Screen!</h1>
-  <!-- Main content goes here -->
-</div>
-

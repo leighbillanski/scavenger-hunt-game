@@ -5,6 +5,7 @@ import { UserService } from '../../services/user/user.service';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
   loggedInUser: any;
@@ -13,12 +14,15 @@ export class ProfileComponent {
     this.loggedInUser = this.userService.getLoggedInUser();
   }
 
-  navigateToUserInfo() {
-    this.router.navigate(['/profile/info']);
+  backToHome() {
+    this.router.navigate(['/home']);
   }
 
   saveProfile() {
     this.userService.setLoggedInUser(this.loggedInUser);
-    alert('Profile updated locally!');
+    this.userService.updateUser(this.loggedInUser.id, this.loggedInUser)
+    alert('Profile updated!');
+    this.router.navigate(['/home']);
+
   }
 }
