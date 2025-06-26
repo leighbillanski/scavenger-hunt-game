@@ -49,19 +49,25 @@ export class HomeComponent {
   }
 
   logout() {
-    this.userService.logout();
+    if (confirm('Are you sure you want to logout?')) {
+      this.userService.logout();
+      this.router.navigate(['/welcome']);
+    }
   }
 
   deleteAccount() {
-    this.userService.deleteUser(this.userService.getLoggedInUser().id).subscribe({
-      next: () => {
-        this.userService.logout();
-        this.router.navigate(['/login']);
-      },
-      error: (err) => {
-        console.error('Error deleting account:', err);
-      }
-    })
+    if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+      this.userService.deleteUser(this.userService.getLoggedInUser().id).subscribe({
+        next: () => {
+          this.userService.logout();
+          this.router.navigate(['/welcome']);
+        },
+        error: (err) => {
+          console.error('Error deleting account:', err);
+          alert('Failed to delete account. Please try again.');
+        }
+      });
+    }
   }
 
   openLightbox(img: string) {

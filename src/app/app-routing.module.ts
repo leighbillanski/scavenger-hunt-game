@@ -30,6 +30,10 @@ const routes: Routes = [
   {
     path: 'hunt',
     loadChildren: () => import('./hunt/hunt.module').then(m => m.HuntModule)
+  },
+  {
+    path: 'riddle',
+    loadChildren: () => import('./riddle/riddle.module').then(m => m.RiddleModule)
   }
 ];
 

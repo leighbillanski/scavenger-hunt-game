@@ -8,7 +8,7 @@
   font-size: 35px;
 }
 
-.hunt-header {
+.riddle-header {
   font-family: 'Orbitron', 'Press Start 2P', 'Segoe UI', Arial, sans-serif;
   font-size: 2rem;
   letter-spacing: 2px;
@@ -35,9 +35,7 @@ body, .container.d-flex.align-items-center.justify-content-center.min-vh-100 {
   overflow: visible;
 }
 
-
-
-.add-hunt-btn {
+.add-riddle-btn {
   position: absolute;
   bottom: 24px;
   right: 32px;
@@ -53,7 +51,7 @@ body, .container.d-flex.align-items-center.justify-content-center.min-vh-100 {
   z-index: 10;
 }
 
-.add-hunt-btn i {
+.add-riddle-btn i {
   font-size: 2rem;
 }
 
@@ -120,7 +118,7 @@ h2 {
 }
 
 /* Custom dropdown menu styling */
-.hunt-dropdown-menu {
+.riddle-dropdown-menu {
   position: absolute;
   top: 100%;
   right: 0;
@@ -136,11 +134,11 @@ h2 {
   backdrop-filter: blur(10px);
 }
 
-.hunt-dropdown-menu.show {
+.riddle-dropdown-menu.show {
   display: block;
 }
 
-.hunt-dropdown-menu .dropdown-item {
+.riddle-dropdown-menu .dropdown-item {
   color: #b3c6ff;
   font-family: 'Orbitron', 'Segoe UI', Arial, sans-serif;
   font-size: 0.9rem;
@@ -152,12 +150,12 @@ h2 {
   transition: background 0.2s, color 0.2s;
 }
 
-.hunt-dropdown-menu .dropdown-item:hover,
-.hunt-dropdown-menu .dropdown-item:focus {
+.riddle-dropdown-menu .dropdown-item:hover,
+.riddle-dropdown-menu .dropdown-item:focus {
   background: rgba(179, 198, 255, 0.1);
   color: #fff;
 }
 
-.hunt-dropdown-menu .dropdown-item i {
+.riddle-dropdown-menu .dropdown-item i {
   color: inherit;
-}
+} 

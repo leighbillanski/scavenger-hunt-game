@@ -1,7 +1,7 @@
-export interface HuntFilter {
+export class HuntFilter {
   name?: string;
   description?: string;
-  user?: boolean;
+  user?: number;
   // Add more filter fields as needed
 }
 

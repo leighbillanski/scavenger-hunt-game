@@ -1,21 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HuntRoutingModule } from './hunt-routing.module';
-import { HuntComponentComponent } from './hunt-component/hunt-component.component';
-import { CreateHuntComponent } from './create-hunt/create-hunt.component';
+import { RiddleRoutingModule } from './riddle-routing.module';
+import { RiddleComponentComponent } from './riddle-component/riddle-component.component';
+import { CreateRiddleComponent } from './create-riddle/create-riddle.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
-  declarations: [HuntComponentComponent, CreateHuntComponent],
+  declarations: [RiddleComponentComponent, CreateRiddleComponent],
   imports: [
     CommonModule,
-    HuntRoutingModule,
+    RiddleRoutingModule,
     ReactiveFormsModule,
     MatMenuModule,
     MatButtonModule
   ]
 })
-export class HuntModule { }
-
+export class RiddleModule { } 

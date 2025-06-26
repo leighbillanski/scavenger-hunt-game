@@ -1,0 +1,32 @@
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="card shadow p-4" style="min-width: 350px; max-width: 400px; width: 100%; position: relative;">
+    <div class="text-center mb-4">
+      <h2 class="mb-3">
+        {{ mode === 'create' ? 'Create Riddle' : mode === 'edit' ? 'Edit Riddle' : 'View Riddle' }}
+      </h2>
+      <button type="button" class="btn btn-outline-secondary btn-sm float-start" (click)="navigateBackToRiddles()">
+        <i class="bi bi-arrow-left"></i> Back
+      </button>
+    </div>
+    <form [formGroup]="riddleForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <textarea class="form-control" placeholder="Riddle" rows="3" formControlName="riddle" [readonly]="mode==='view'" required></textarea>
+      </div>
+      <div class="mb-3">
+        <input type="number" class="form-control" placeholder="Sequence" formControlName="sequence" [readonly]="mode==='view'" required>
+      </div>
+      <div class="d-grid gap-2" *ngIf="mode !== 'view'">
+        <button type="submit" class="btn btn-primary">
+          <i class="bi" [ngClass]="mode==='create' ? 'bi-pencil' : 'bi-plus-circle'" ></i>
+          {{ mode === 'edit' ? 'Update' : 'Create (Auto-generates QR Code)' }}
+        </button>
+      </div>
+      <div class="d-grid" *ngIf="mode === 'view' && currentRiddle?.qrCode">
+        <button type="button" class="btn btn-success" (click)="downloadQRCode()">
+          <i class="bi bi-download me-2"></i>
+          Download QR Code
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
