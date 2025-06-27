@@ -63,18 +63,34 @@
 
             <!-- Scanner Button -->
       <div class="d-grid gap-2">
-        <button class="btn btn-primary btn-lg" 
-                (click)="openScanner()" 
+        <button class="btn btn-primary btn-lg"
+                (click)="openScanner()"
                 [disabled]="isScanning">
           <i class="bi bi-qr-code-scan"></i>
           {{ isScanning ? 'Scanning...' : 'Scan QR Code' }}
         </button>
-        
-        <!-- Testing button for debugging -->
-        <button class="btn btn-outline-secondary btn-sm" 
-                (click)="onManualQREntry()">
-          <i class="bi bi-keyboard"></i> Manual Entry (Testing)
-        </button>
+
+        <!-- Testing buttons for debugging -->
+<!--        <div class="row">-->
+<!--          <div class="col-4">-->
+<!--            <button class="btn btn-outline-secondary btn-sm w-100" -->
+<!--                    (click)="onManualQREntry()">-->
+<!--              <i class="bi bi-keyboard"></i> Manual-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <div class="col-4">-->
+<!--            <button class="btn btn-outline-info btn-sm w-100" -->
+<!--                    (click)="testQRDetection()">-->
+<!--              <i class="bi bi-bug"></i> Test-->
+<!--            </button>-->
+<!--          </div>-->
+<!--          <div class="col-4">-->
+<!--            <button class="btn btn-outline-warning btn-sm w-100" -->
+<!--                    (click)="showTestQR()">-->
+<!--              <i class="bi bi-qr-code"></i> QR-->
+<!--            </button>-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
     </div>
 
@@ -90,7 +106,7 @@
           </div>
           <div class="modal-body text-center">
                         <div class="scanner-container">
-              <video id="qr-video" 
+              <video id="qr-video"
                      autoplay
                      muted
                      playsinline

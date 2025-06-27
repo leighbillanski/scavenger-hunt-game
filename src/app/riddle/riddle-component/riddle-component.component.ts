@@ -77,7 +77,6 @@ export class RiddleComponentComponent implements OnInit {
   }
 
   closeDropdown(): void {
-    this.riddleService
     this.dropdownOpen = null;
   }
 }
