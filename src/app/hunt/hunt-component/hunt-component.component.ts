@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import { HuntService } from '../../services/hunt/hunt.service';
+import { UserService } from '../../services/user/user.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,15 +12,22 @@ import { Router } from '@angular/router';
 export class HuntComponentComponent implements OnInit {
   hunts: any[] = [];
   dropdownOpen: number | null = null;
+  currentUser: any = null;
+  userRole: string = '';
 
   constructor(
     private title: Title,
     private huntService: HuntService,
+    private userService: UserService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
     this.title.setTitle('Hunt');
+    this.currentUser = this.userService.getLoggedInUser();
+    this.userRole = this.currentUser?.role.toLocaleUpperCase() || '';
+    console.log('Current User:', this.currentUser.role);
+
     this.huntService.getAllHunts().subscribe((data: any) => {
       this.hunts = data;
     });
@@ -30,8 +38,17 @@ export class HuntComponentComponent implements OnInit {
   }
 
   onHuntClick(hunt: any): void {
-    // Example: navigate to a hunt detail page (customize as needed)
-    this.router.navigate(['/hunt', hunt.id]);
+    // Role-based navigation logic
+    if (this.userRole === 'Hunter') {
+      // Navigate to RiddleScannerComponent for hunters
+      this.router.navigate(['/riddle/scanner', hunt.id]);
+    } else if (this.userRole === 'Host') {
+      // For hosts, do nothing on click (only dropdown should be available)
+      return;
+    } else {
+      // Default behavior for other roles
+      this.router.navigate(['/hunt', hunt.id]);
+    }
   }
 
   onAddHunt(): void {
@@ -72,5 +89,22 @@ export class HuntComponentComponent implements OnInit {
     } else {
       this.router.navigate(['/riddle']);
     }
+  }
+
+  onPlayHunt(event: MouseEvent, hunt: any): void {
+    event.stopPropagation();
+    event.preventDefault();
+    this.closeDropdown();
+    if (hunt && hunt.id) {
+      this.router.navigate(['/riddle/scanner', hunt.id]);
+    }
+  }
+
+  isHunter(): boolean {
+    return this.userRole === 'Hunter'.toLocaleUpperCase();
+  }
+
+  isHost(): boolean {
+    return this.userRole === 'Host'.toLocaleUpperCase();
   }
 }

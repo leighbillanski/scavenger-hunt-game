@@ -12,6 +12,7 @@ export class ProfileComponent {
 
   constructor(private router: Router, private userService: UserService) {
     this.loggedInUser = this.userService.getLoggedInUser();
+    this.loggedInUser.role = this.loggedInUser.role.toLocaleUpperCase()
   }
 
   backToHome() {

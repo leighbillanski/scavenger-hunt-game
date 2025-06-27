@@ -1,0 +1,110 @@
+<div class="container d-flex align-items-center justify-content-center min-vh-100">
+  <div class="card p-4" style="min-width: 350px; max-width: 500px; width: 100%;">
+
+    <!-- Header -->
+    <div class="text-center mb-4">
+      <h2 class="mb-3">Scavenger Hunt</h2>
+      <button type="button" class="btn btn-outline-secondary btn-sm float-start" (click)="navigateBack()">
+        <i class="bi bi-arrow-left"></i> Back to Hunts
+      </button>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="loading" class="text-center py-4">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-2">Loading riddles...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="error && !loading" class="alert alert-danger" role="alert">
+      {{ error }}
+    </div>
+
+    <!-- Completion State -->
+    <div *ngIf="completed" class="text-center py-4">
+      <div class="mb-4">
+        <i class="bi bi-trophy-fill text-warning" style="font-size: 4rem;"></i>
+      </div>
+      <h3 class="text-success mb-3">🎉 Congratulations! 🎉</h3>
+      <p class="mb-4">You've completed the scavenger hunt!</p>
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" (click)="restartHunt()">
+          <i class="bi bi-arrow-clockwise"></i> Restart Hunt
+        </button>
+        <button class="btn btn-outline-secondary" (click)="navigateBack()">
+          <i class="bi bi-house"></i> Back to Hunts
+        </button>
+      </div>
+    </div>
+
+    <!-- Active Riddle State -->
+    <div *ngIf="currentRiddle && !completed && !loading">
+      <div class="mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0">Riddle {{ currentRiddleIndex + 1 }} of {{ riddles.length }}</h5>
+          <div class="progress flex-grow-1 mx-3" style="height: 8px;">
+            <div class="progress-bar"
+                 [style.width.%]="((currentRiddleIndex + 1) / riddles.length) * 100">
+            </div>
+          </div>
+        </div>
+
+        <div class="card bg-light">
+          <div class="card-body">
+            <h6 class="card-title">
+              <i class="bi bi-question-circle text-primary"></i> Your Riddle:
+            </h6>
+            <p class="card-text">{{ currentRiddle.riddleText }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scanner Button -->
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary btn-lg"
+                (click)="openScanner()"
+                [disabled]="isScanning">
+          <i class="bi bi-qr-code-scan"></i>
+          {{ isScanning ? 'Scanning...' : 'Scan QR Code' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- QR Scanner Modal -->
+    <div class="modal" [class.show]="scannerVisible" [style.display]="scannerVisible ? 'block' : 'none'">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              <i class="bi bi-camera"></i> Scan QR Code
+            </h5>
+            <button type="button" class="btn-close" (click)="closeScanner()"></button>
+          </div>
+          <div class="modal-body text-center">
+            <div class="scanner-container">
+              <video id="qr-video"
+                     style="width: 100%; max-width: 300px; height: auto; border-radius: 8px;">
+              </video>
+              <div class="scanner-overlay">
+                <div class="scanner-frame"></div>
+              </div>
+            </div>
+            <p class="mt-3 small text-muted">
+              Position the QR code within the frame to scan
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeScanner()">
+              <i class="bi bi-x-circle"></i> Cancel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal backdrop -->
+    <div class="modal-backdrop fade" [class.show]="scannerVisible" *ngIf="scannerVisible"></div>
+  </div>
+</div>

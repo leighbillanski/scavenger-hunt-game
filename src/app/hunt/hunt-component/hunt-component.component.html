@@ -8,11 +8,26 @@
     </div>
     <div *ngIf="hunts.length > 0; else noHunts">
       <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let hunt of hunts; let i = index">
+        <li class="list-group-item d-flex justify-content-between align-items-center"
+            *ngFor="let hunt of hunts; let i = index"
+            [class.clickable-hunt]="isHunter()"
+            [class.non-clickable-hunt]="isHost()"
+            (click)="onHuntClick(hunt)">
           <span>{{ hunt.name || 'Unnamed Hunt' }}</span>
           <div class="dropdown position-relative">
-            <button class="btn btn-link menu-trigger-btn" type="button" (click)="toggleDropdown(i)">
+            <!-- Show three dots for Host role or if user is not Hunter -->
+            <button class="btn btn-link menu-trigger-btn"
+                    type="button"
+                    (click)="toggleDropdown(i)"
+                    *ngIf="isHost() || !isHunter()">
               <i class="bi bi-three-dots-vertical"></i>
+            </button>
+            <!-- Show play button for Hunter role -->
+            <button class="btn btn-primary btn-sm"
+                    type="button"
+                    (click)="onPlayHunt($event, hunt)"
+                    *ngIf="isHunter()">
+              <i class="bi bi-play-fill"></i> Play
             </button>
             <div class="hunt-dropdown-menu" [class.show]="dropdownOpen === i" (click)="closeDropdown()">
               <a class="dropdown-item" href="#" (click)="onViewHunt(hunt, $event)">

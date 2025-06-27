@@ -3,7 +3,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {RiddleService} from '../../services/riddle/riddle.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {RiddleFilter} from "../../services/riddle/riddle.filter";
-import {UserService} from "../../services/user/user.service";
 import {Title} from "@angular/platform-browser";
 import * as QRCode from 'qrcode';
 
@@ -26,7 +25,6 @@ export class CreateRiddleComponent implements OnInit{
     private riddleService: RiddleService,
     private fb: FormBuilder,
     private title: Title,
-    private userService: UserService
   ) {
     this.riddleForm = this.fb.group({
       riddle: [''],
@@ -143,28 +141,28 @@ export class CreateRiddleComponent implements OnInit{
           const padding = 30;
           const fontSize = 20;
           const textHeight = fontSize + 10;
-          
+
           canvas.width = img.width;
           canvas.height = img.height + padding + textHeight;
-          
+
           if (ctx) {
             // Fill the entire canvas with white background
             ctx.fillStyle = '#FFFFFF';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
+
             // Draw QR code on top of white background
             ctx.drawImage(img, 0, 0);
-            
+
             // Draw riddle ID below QR code with better positioning
             ctx.font = `bold ${fontSize}px Arial`;
             ctx.textAlign = 'center';
             ctx.fillStyle = '#000000';
             ctx.textBaseline = 'middle';
-            
+
             const textY = img.height + (padding + textHeight) / 2;
             ctx.fillText(`Riddle ID: ${riddleId}`, canvas.width / 2, textY);
           }
-          
+
           // Create a download link for the canvas image
           const link = document.createElement('a');
           link.href = canvas.toDataURL('image/jpeg', 0.95);
@@ -210,8 +208,7 @@ export class CreateRiddleComponent implements OnInit{
     riddle.hunt = this.huntId || '';
 
     if (this.mode === 'create') {
-      const qrCodeString = await this.generateQRCode(riddleText);
-      riddle.qrCode.qrData = qrCodeString;
+      riddle.qrCode.qrData = await this.generateQRCode(riddleText);
       console.log('Riddle to be created:', riddle);
       this.riddleService.createRiddle(riddle).subscribe(() => {
         if (this.huntId) {
