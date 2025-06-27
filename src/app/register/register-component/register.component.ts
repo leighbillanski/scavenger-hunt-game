@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
       console.error('Passwords do not match');
       return;
     }
-    filter.role = this.registrationFormGroup.get('role')?.value;
+    filter.role = 'Hunter';
     this.service.register(filter).subscribe({
       next: (response) => {
         console.log('Registration successful');
@@ -60,7 +60,6 @@ export class RegisterComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
-      role: ['', Validators.required]
     });
   }
 
