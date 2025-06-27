@@ -7,7 +7,7 @@ import {HuntFilter} from "./hunt.filter";
 })
 export class HuntService {
 
-  private url = 'https://scav-hunt-game.onrender.com/users/';
+  private url = 'https://scav-hunt-game.onrender.com/hunt/';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -16,7 +16,7 @@ export class HuntService {
   }
 
   getHuntById(id: number) {
-    return this.httpClient.get(`${this.url}/${id}`);
+    return this.httpClient.get(`${this.url}${id}`);
   }
 
   createHunt(hunt: HuntFilter) {
@@ -24,11 +24,11 @@ export class HuntService {
   }
 
   updateHunt(id: number, hunt: HuntFilter) {
-    return this.httpClient.put(`${this.url}/${id}`, hunt);
+    return this.httpClient.put(`${this.url}${id}`, hunt);
   }
 
   deleteHunt(id: number) {
-    return this.httpClient.delete(`${this.url}/${id}`);
+    return this.httpClient.delete(`${this.url}${id}`);
   }
 
   setLocalHunt(hunt: any) {

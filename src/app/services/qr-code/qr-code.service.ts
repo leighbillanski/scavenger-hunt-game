@@ -7,13 +7,13 @@ import {QrCodeFilter} from "./qr-code.filter";
 })
 export class QrCodeService {
 
-  private url = 'https://scav-hunt-game.onrender.com/users/';
+  private url = 'https://scav-hunt-game.onrender.com/qr/';
 
   constructor(private httpClient: HttpClient) { }
 
 
   getQrCodeById(id: number) {
-    return this.httpClient.get(`${this.url}/${id}`);
+    return this.httpClient.get(`${this.url}${id}`);
   }
 
   createQrCode(qrCode: QrCodeFilter) {

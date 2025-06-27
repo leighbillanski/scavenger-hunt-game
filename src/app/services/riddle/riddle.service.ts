@@ -7,16 +7,16 @@ import {RiddleFilter} from "./riddle.filter";
 })
 export class RiddleService {
 
-  private url = 'https://scav-hunt-game.onrender.com/users/';
+  private url = 'https://scav-hunt-game.onrender.com/riddle/';
 
   constructor(private httpClient: HttpClient) { }
 
   getAllRiddles(huntId: number | null) {
-    return this.httpClient.get(this.url + `/hunt/${huntId}`);
+    return this.httpClient.get(this.url + `hunt/${huntId}`);
   }
 
   getRiddleById(id: number) {
-    return this.httpClient.get(`${this.url}/${id}`);
+    return this.httpClient.get(`${this.url}${id}`);
   }
 
   createRiddle(riddle: RiddleFilter) {
